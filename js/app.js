@@ -25,9 +25,40 @@ function Plot(x, y) {
   allPlots.push(this);
 }
 
-new Ship('USS Test', 2);
+new Ship('USS Test', 3);
 //*********************************
 // Functions for Placing Ships
+function checkYDirection(whichway) {
+  // Start at origin and look either up or down based on 'direction' from randomDirection.
+  // Check for as many positions as required by ship.size.
+  var tempDirectionArr = [];
+
+  if (whichway === 'up') {
+    // check the spaces above origin until necessity is met.
+    // Stop if space is not available and go the opposite direction.
+    // Keep track of already approved open positions.
+    // Y + 1
+
+  }
+  if (whichway === 'down') {
+    // check the spaces below origin until necessity is met.
+    // Stop if space is not available and go the opposite direction.
+    // Y - 1
+  }
+}
+
+function checkXDirection() {
+  if (whichway === 'left') {
+    // check the spaces to the left of origin until necessity is met.
+    // Stop if space is not available and go the opposite direction.
+    // X - 1
+  }
+  if (whichway === 'right') {
+    // check the spaces to the right of origin until necessity is met.
+    // Stop if space is not available and go the opposite direction.
+    // X + 1
+  }
+}
 
 // Randomize for X
 function randomizeForX() {
@@ -43,8 +74,23 @@ function randomizeForY() {
 
 // Randomize for Direction (1 thru 4)
 function randomDirection() {
-  var direction = (Math.floor(Math.random() * 4) + 1);  //Randomizes 1 thru 4
-  console.log(direction,'Direction value');
+  var direction;
+  var temp = (Math.floor(Math.random() * 4) + 1);  //Randomizes 1 thru 4
+  if (temp === 1)
+    direction = 'up';
+  if (temp === 2)
+    direction = 'left';
+  if (temp === 3)
+    direction = 'right';
+  if (temp === 4)
+    direction = 'down';
+
+  // if (direction === up | direction === down)
+    // checkYDirection(direction);
+
+  // if (direction === left | direction === right)
+    // checkXDirection(direction);
+
   return direction;
 }
 randomDirection();
@@ -61,5 +107,20 @@ function createPlots() {
   }
 }
 
+function updatePlotDisplay() {
+  var temp;
+  for(var i in allPlots) {
+    if (allPlots[i].occupied === true) {
+      temp = allPlots[i].x;
+      temp += allPlots[i].y;
+      console.log(temp);
+      var tableID = document.getElementById(temp);
+      console.log(tableID);
+      tableID.style.color = 'red';
+    }
+  }
+}
 // function calls
 createPlots();
+allPlots[6].occupied = true; // function call for generating a starting point
+updatePlotDisplay();
