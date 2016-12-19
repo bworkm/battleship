@@ -16,6 +16,9 @@ div {
   height: 50px;
   border: 1px dotted green;
 }
+table {
+  margin: 100px auto;
+}
 td {
   width: 50px;
   height: 50px;
