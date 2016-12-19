@@ -1,0 +1,23 @@
+body {
+  width: 960px;
+  margin: 0 auto;
+  background-color: lightblue;
+  border: 1px dashed red;
+}
+div {
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  background-color: white;
+}
+.spot {
+  width: 50px;
+  height: 50px;
+  border: 1px dotted green;
+}
+td {
+  width: 50px;
+  height: 50px;
+  border: 1px dotted green;
+}
