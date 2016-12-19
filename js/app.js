@@ -20,6 +20,7 @@ function Ship(name, size) {
 function Plot(x, y) {
   this.x = x;
   this.y = y;
+  this.id = x + y;
   this.occupied = false;
   this.updateOccupied = function() {};
   allPlots.push(this);
@@ -28,7 +29,7 @@ function Plot(x, y) {
 new Ship('USS Test', 3);
 //*********************************
 // Functions for Placing Ships
-function checkYDirection(whichway) {
+function checkYDirection(startPoint, whichway) {
   // Start at origin and look either up or down based on 'direction' from randomDirection.
   // Check for as many positions as required by ship.size.
   var tempDirectionArr = [];
@@ -64,16 +65,18 @@ function checkXDirection() {
 function randomizeForX() {
   var xPos = (Math.floor(Math.random() * maxWidth) + 1);
   console.log(xPos,'X value');
+  return xPos;
 }
 
 // Randomize for Y
 function randomizeForY() {
   var yPos = (Math.floor(Math.random() * maxHeight) + 1);
   console.log(yPos,'Y value');
+  return yPos;
 }
 
 // Randomize for Direction (1 thru 4)
-function randomDirection() {
+function randomDirection(startPoint) {
   var direction;
   var temp = (Math.floor(Math.random() * 4) + 1);  //Randomizes 1 thru 4
   if (temp === 1)
@@ -85,15 +88,14 @@ function randomDirection() {
   if (temp === 4)
     direction = 'down';
 
-  // if (direction === up | direction === down)
-    // checkYDirection(direction);
+  if (direction === up | direction === down)
+    checkYDirection(startPoint, direction);
 
-  // if (direction === left | direction === right)
-    // checkXDirection(direction);
+  if (direction === left | direction === right)
+    checkXDirection(startPoint, direction);
 
   return direction;
 }
-randomDirection();
 // Check for nearby open spaces X
 // Check for nearby open spaces Y
 // seatsTaken() for updating occupied spots
@@ -119,6 +121,29 @@ function updatePlotDisplay() {
       tableID.style.color = 'red';
     }
   }
+}
+
+function plotShips() {
+  var startPoint;
+  for (var ship in allShips) {
+    var xCoord = randomizeForX();
+    var yCoord = randomizeForY();
+    while (!validStartingPoint(xCoord, yCoord)) {
+      xCoord = randomizeForX();
+      yCoord = randomizeForY();
+    }
+    randomDirection(startPoint);
+  }
+}
+
+function validStartingPoint(xCoord, yCoord) {
+  for (var plot in allPlots) {
+    if ((allPlots[plot].x === xCoord) && (allPlots[plot].y === yCoord) && (allPlots[plot].occupied === true)) {
+      startPoint = allPlots[plot].name;
+      return false;
+    }
+  }
+  return true;
 }
 // function calls
 createPlots();
