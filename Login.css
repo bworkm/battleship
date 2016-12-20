@@ -67,7 +67,7 @@ div{
   box-sizing: content-box;
   z-index: -1;
   position: fixed;
-  opacity: 0.84;
+  align-content: center;
   padding: 10px;
   overflow: hidden;
   border: none;
@@ -83,3 +83,35 @@ div{
 
 li{padding-top: 0px;
   display: inline;}
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+@keyframesfadeInUp {
+
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: none;
+    }
