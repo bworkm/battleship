@@ -28,6 +28,7 @@ div{
 }
 #userinput{
   font: normal 20px/1 "VT323", Helvetica, sans-serif;
+  text-shadow: -1px -1px 0 red ;
   position: center bottom;
   padding-bottom: 30px;
   text-decoration: none;
@@ -44,7 +45,7 @@ div{
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  width: 29px;
+  width: 30px;
   height: 15px;
   cursor: pointer;
   padding: 10px 15px;
@@ -58,7 +59,7 @@ div{
   background: black;
   -webkit-box-shadow: 7px 2px 2px 0 rgba(0,0,0,0.2) ;
   box-shadow: 7px 2px 2px 0 rgba(0,0,0,0.2) ;
-  text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+  text-shadow: -1px -1px 0 red ;
   margin-top: 4px;
 }
 .banner {
