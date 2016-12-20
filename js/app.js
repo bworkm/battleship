@@ -29,32 +29,39 @@ function Plot(x, y) {
 new Ship('USS Test', 3);
 //*********************************
 // Functions for Placing Ships
-function checkYDirection(startPoint, whichway) {
+function verifyOpenSpaces(xCoord, yCoord, whichWay) {
+  console.log('enter verifyOpenSpaces. X:' + xCoord + ' Y:' + yCoord + ' dir:' + whichWay);
   // Start at origin and look either up or down based on 'direction' from randomDirection.
   // Check for as many positions as required by ship.size.
   var tempDirectionArr = [];
+  var tempPlot = xCoord + yCoord;
+  tempDirectionArr.push(tempPlot);
 
-  if (whichway === 'up') {
+  if (whichWay === 'up') {
     // check the spaces above origin until necessity is met.
     // Stop if space is not available and go the opposite direction.
     // Keep track of already approved open positions.
-    // Y + 1
-
+    // Y - 1
+    // for (var i = 1; i < ship.size; i++) {   // This will break until we replace ship.size with the size of the ship we are placing.
+      for (var plotNum in allPlots) {
+        if ((allPlots[plotNum].x === xCoord) && (allPlots[plotNum].y === (yCoord - 1)) && (allPlots[plotNum].occupied === false)) {
+          tempPlot = allPlots[plotNum].id;
+        }
+      }
+    // }
   }
-  if (whichway === 'down') {
+  if (whichWay === 'down') {
     // check the spaces below origin until necessity is met.
     // Stop if space is not available and go the opposite direction.
-    // Y - 1
+    // Y + 1
   }
-}
 
-function checkXDirection() {
-  if (whichway === 'left') {
+  if (whichWay === 'left') {
     // check the spaces to the left of origin until necessity is met.
     // Stop if space is not available and go the opposite direction.
     // X - 1
   }
-  if (whichway === 'right') {
+  if (whichWay === 'right') {
     // check the spaces to the right of origin until necessity is met.
     // Stop if space is not available and go the opposite direction.
     // X + 1
@@ -63,21 +70,24 @@ function checkXDirection() {
 
 // Randomize for X
 function randomizeForX() {
-  var xPos = (Math.floor(Math.random() * maxWidth) + 1);
-  console.log(xPos,'X value');
+  var xPos = (Math.floor(Math.random() * maxWidth));
+  xPos = xPosArr[xPos];
+  // console.log(xPos,'X value');
   return xPos;
 }
 
 // Randomize for Y
 function randomizeForY() {
-  var yPos = (Math.floor(Math.random() * maxHeight) + 1);
-  console.log(yPos,'Y value');
+  var yPos = (Math.floor(Math.random() * maxHeight));
+  // console.log(yPos,'Y value');
   return yPos;
 }
 
 // Randomize for Direction (1 thru 4)
-function randomDirection(startPoint) {
+function randomDirection(xCoord, yCoord) {
   var direction;
+  console.log('xCoord:', xCoord);
+  console.log('yCoord:', yCoord);
   var temp = (Math.floor(Math.random() * 4) + 1);  //Randomizes 1 thru 4
   if (temp === 1)
     direction = 'up';
@@ -88,11 +98,7 @@ function randomDirection(startPoint) {
   if (temp === 4)
     direction = 'down';
 
-  if (direction === up | direction === down)
-    checkYDirection(startPoint, direction);
-
-  if (direction === left | direction === right)
-    checkXDirection(startPoint, direction);
+  verifyOpenSpaces(xCoord, yCoord, direction);
 
   return direction;
 }
@@ -115,37 +121,56 @@ function updatePlotDisplay() {
     if (allPlots[i].occupied === true) {
       temp = allPlots[i].x;
       temp += allPlots[i].y;
-      console.log(temp);
+      // console.log(temp);
       var tableID = document.getElementById(temp);
-      console.log(tableID);
+      // console.log(tableID);
       tableID.style.color = 'red';
     }
   }
 }
 
 function plotShips() {
-  var startPoint;
+  // var startPointX;
+  // var startPointY;
+  // console.log(startPoint);
   for (var ship in allShips) {
     var xCoord = randomizeForX();
+    // console.log(xCoord,'xCoord');
     var yCoord = randomizeForY();
+    // console.log(yCoord,'yCoord');
     while (!validStartingPoint(xCoord, yCoord)) {
       xCoord = randomizeForX();
       yCoord = randomizeForY();
     }
-    randomDirection(startPoint);
+    randomDirection(xCoord, yCoord);
   }
 }
 
 function validStartingPoint(xCoord, yCoord) {
+  // console.log(xCoord,'xCoord vsp');
+  // console.log(yCoord,'yCoord vsp');
   for (var plot in allPlots) {
+    // console.log('validStartingPoint plot:', plot);
     if ((allPlots[plot].x === xCoord) && (allPlots[plot].y === yCoord) && (allPlots[plot].occupied === true)) {
-      startPoint = allPlots[plot].name;
+      // startPoint = allPlots[plot].id;
+      // console.log(startPoint,'startPoint');
+      console.log('Invalid starting point');
       return false;
     }
+    else if ((allPlots[plot].x === xCoord) && (allPlots[plot].y === yCoord)) {
+      // startPoint = allPlots[plot].id;
+      // console.log(startPoint,'startPoint');
+    }
   }
+  console.log('valid starting point');
   return true;
 }
 // function calls
 createPlots();
-allPlots[6].occupied = true; // function call for generating a starting point
+// allPlots[6].occupied = true; // function call for generating a starting point
+// allPlots[3].occupied = true; // function call for generating a starting point
+// allPlots[11].occupied = true; // function call for generating a starting point
+// allPlots[16].occupied = true; // function call for generating a starting point
+// allPlots[23].occupied = true; // function call for generating a starting point
+plotShips();
 updatePlotDisplay();
