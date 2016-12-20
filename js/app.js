@@ -1,7 +1,7 @@
 'use strict';
 // var shipLocations = ['B1', 'C1', 'D1','E2','E3','A4','B4','C4','D4'];
 var shipLocations = [
-  [6, 11, 16, 22, 23, 4, 9, 14, 19]
+  [8,16, 24, 42,43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63]
 ];
 var allShips = [];
 var allPlots = [];
@@ -10,6 +10,7 @@ var maxHeight = 8;
 var maxWidth = 8;
 var grid = document.getElementById('clickable_Grid');
 var score = 100;
+var clickedGridPT = [];
 
 function Ship(name, size) {
   this.name = name;
@@ -28,6 +29,7 @@ function Plot(x, y) {
   this.id = x + y;
   this.occupied = false;
   this.updateOccupied = function() {};
+  this.retaliate = false;
   allPlots.push(this);
 }
 
@@ -166,6 +168,23 @@ function plotShips() {
 // }
 function handleClick() {
   console.log('You clicked ', event.target.id);
+  for( var plot in allPlots){
+    if(allPlots[plot].id === event.target.id) {
+      if (clickedGridPT.indexOf(event.target.id) === -1 ) {
+      calcScore(allPlots[plot].occupied, allPlots[plot].retaliate);
+      clickedGridPT.push(event.target.id);
+      console.log(shipLocations.indexOf(event.target.id));
+      if(isInArray(event.target.id, shipLocations)){
+        shipLocations.splice(shipLocations.indexOf(event.target.id), 1);
+      }
+      break;
+    }
+
+  }
+
+}
+function isInArray (value, array){
+  return array.indexOf(value) > -1;
 }
 // function calls
 createPlots();
@@ -175,6 +194,7 @@ updatePlotDisplay();
 
 grid.addEventListener('click', handleClick);
 //*************************Scoring Structure**************************
+
 function calcScore (occupied, retaliate) {
   var hit = 50;
   var miss = -10;
@@ -192,5 +212,8 @@ function calcScore (occupied, retaliate) {
   if(!occupied && retaliate ){
     score += miss + retaliation;
   }
+  console.log(score);
   return score;
 }
+
+//**************************Hit or Miss*******************************
