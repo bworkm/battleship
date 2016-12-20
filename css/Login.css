@@ -1,0 +1,117 @@
+body{
+
+  background-image: url("assets/DestroyerDestroying.jpg");
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  border-style: ridge;
+  padding: 0;
+  margin: 0;
+  background-repeat: no-repeat;
+  padding-bottom: 10px;
+  background-position:center;
+  border-bottom: 20 px;
+  text-decoration: none;
+  background-attachment: fixed;
+}
+div{
+  margin: auto;
+  height: 300px;
+  width: 400px;
+  border-style: groove;
+  padding: 10px;
+  margin-top: 300px;
+  color: orange;
+  padding-bottom: 10px;
+}
+#userinput{
+  font: normal 20px/1 "VT323", Helvetica, sans-serif;
+  position: center bottom;
+  padding-bottom: 30px;
+  text-decoration: none;
+  background-attachment: fixed;
+  height: 300px;
+  width: 400px;
+  align-items: center;
+
+
+}
+
+.button {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 29px;
+  height: 15px;
+  cursor: pointer;
+  padding: 10px 15px;
+  border: 2px solid black;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font: normal 14px/normal Impact, Charcoal, sans-serif;
+  color: rgba(255,128,2,0.9);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #0199d9;
+  -webkit-box-shadow: 7px 2px 2px 0 rgba(0,0,0,0.2) ;
+  box-shadow: 7px 2px 2px 0 rgba(0,0,0,0.2) ;
+  text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+}
+.banner {
+  margin: 0;
+  display: inline;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  z-index: -1;
+  position: fixed;
+  align-content: center;
+  padding: 10px;
+  overflow: hidden;
+  border: none;
+  font: normal 119px/1 "VT323", Helvetica, sans-serif;
+  color: rgba(247,146,14,1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  word-spacing: -1px;
+  text-shadow: 5px 5px 0 rgba(255,0,0,1) ;
+  padding-left: 340px;
+}
+
+li{padding-top: 0px;
+  display: inline;}
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+@keyframesfadeInUp {
+
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: none;
+    }
