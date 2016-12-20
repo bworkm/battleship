@@ -9,11 +9,12 @@ body{
   padding: 0;
   margin: 0;
   background-repeat: no-repeat;
-  padding-bottom: 10px;
+  /*padding-bottom: 10px;*/
   background-position:center;
-  border-bottom: 20 px;
+  /*border-bottom: 20 px;*/
   text-decoration: none;
   background-attachment: fixed;
+  position: fixed;
 }
 div{
   margin: auto;
@@ -47,21 +48,22 @@ div{
   height: 15px;
   cursor: pointer;
   padding: 10px 15px;
-  border: 2px solid black;
+  border: 2px solid #0199d9;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   font: normal 14px/normal Impact, Charcoal, sans-serif;
   color: rgba(255,128,2,0.9);
   -o-text-overflow: clip;
   text-overflow: clip;
-  background: #0199d9;
+  background: black;
   -webkit-box-shadow: 7px 2px 2px 0 rgba(0,0,0,0.2) ;
   box-shadow: 7px 2px 2px 0 rgba(0,0,0,0.2) ;
   text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+  margin-top: 4px;
 }
 .banner {
-  margin: 0;
-  display: inline;
+  margin-top: auto;
+  display: inline-block;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -78,11 +80,14 @@ div{
   text-overflow: ellipsis;
   word-spacing: -1px;
   text-shadow: 5px 5px 0 rgba(255,0,0,1) ;
-  padding-left: 340px;
+  padding-left: 440px;
+  margin-left: 110px auto ;
+  margin-right:20px auto;
 }
 
 li{padding-top: 0px;
-  display: inline;}
+  display: inline;
+  background-attachment: fixed;}
   @keyframes fadeIn {
     0% {
       opacity: 0;
