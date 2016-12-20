@@ -1,5 +1,6 @@
 'use strict';
-
+// var shipLocations = ['B1', 'C1', 'D1','E2','E3','A4','B4','C4','D4'];
+var shipLocations = [6, 11, 16, 22, 23, 4, 9, 14, 19];
 var allShips = [];
 var allPlots = [];
 var xPosArr = ['A', 'B', 'C', 'D' ,'E'];
@@ -26,7 +27,9 @@ function Plot(x, y) {
   allPlots.push(this);
 }
 
-new Ship('USS Test', 3);
+new Ship('USS Juan', 2);
+new Ship('USS Darcy', 3);
+new Ship('USS Chika', 4);
 //*********************************
 // Functions for Placing Ships
 function checkYDirection(startPoint, whichway) {
@@ -48,7 +51,7 @@ function checkYDirection(startPoint, whichway) {
   }
 }
 
-function checkXDirection() {
+function checkXDirection(startPoint, whichway) {
   if (whichway === 'left') {
     // check the spaces to the left of origin until necessity is met.
     // Stop if space is not available and go the opposite direction.
@@ -63,15 +66,15 @@ function checkXDirection() {
 
 // Randomize for X
 function randomizeForX() {
-  var xPos = (Math.floor(Math.random() * maxWidth) + 1);
-  console.log(xPos,'X value');
+  var xPos = (Math.floor(Math.random() * maxWidth));
+  // console.log(xPosArr[xPos],'X value');
   return xPos;
 }
 
 // Randomize for Y
 function randomizeForY() {
-  var yPos = (Math.floor(Math.random() * maxHeight) + 1);
-  console.log(yPos,'Y value');
+  var yPos = (Math.floor(Math.random() * maxHeight));
+  // console.log(yPos,'Y value');
   return yPos;
 }
 
@@ -88,10 +91,10 @@ function randomDirection(startPoint) {
   if (temp === 4)
     direction = 'down';
 
-  if (direction === up | direction === down)
+  if (direction === 'up' | direction === 'down')
     checkYDirection(startPoint, direction);
 
-  if (direction === left | direction === right)
+  if (direction === 'left' | direction === 'right')
     checkXDirection(startPoint, direction);
 
   return direction;
@@ -115,24 +118,26 @@ function updatePlotDisplay() {
     if (allPlots[i].occupied === true) {
       temp = allPlots[i].x;
       temp += allPlots[i].y;
-      console.log(temp);
+      // console.log(temp);
       var tableID = document.getElementById(temp);
-      console.log(tableID);
-      tableID.style.color = 'red';
+      // console.log(tableID);
+      tableID.style.background = 'navy';
     }
   }
 }
 
 function plotShips() {
-  var startPoint;
-  for (var ship in allShips) {
-    var xCoord = randomizeForX();
-    var yCoord = randomizeForY();
-    while (!validStartingPoint(xCoord, yCoord)) {
-      xCoord = randomizeForX();
-      yCoord = randomizeForY();
-    }
-    randomDirection(startPoint);
+  // var startPoint;
+  for (var ship in shipLocations) {
+    // console.log(shipLocations[ship],'ship in shipLocations')
+    allPlots[shipLocations[ship]].occupied = true;
+  //   var xCoord = randomizeForX();
+  //   var yCoord = randomizeForY();
+  //   while (!validStartingPoint(xCoord, yCoord)) {
+  //     xCoord = randomizeForX();
+  //     yCoord = randomizeForY();
+  //   }
+  //   randomDirection(startPoint);
   }
 }
 
@@ -147,5 +152,5 @@ function validStartingPoint(xCoord, yCoord) {
 }
 // function calls
 createPlots();
-allPlots[6].occupied = true; // function call for generating a starting point
+plotShips();
 updatePlotDisplay();
