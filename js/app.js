@@ -9,7 +9,7 @@ var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H', 'I', 'J'];
 var maxHeight = 8;
 var maxWidth = 8;
 var grid = document.getElementById('clickable_Grid');
-
+var score = 100;
 
 function Ship(name, size) {
   this.name = name;
@@ -174,3 +174,23 @@ plotShips();
 updatePlotDisplay();
 
 grid.addEventListener('click', handleClick);
+//*************************Scoring Structure**************************
+function calcScore (occupied, retaliate) {
+  var hit = 50;
+  var miss = -10;
+  var retaliation = -20;
+
+  if(occupied && !retaliate ){
+    score += hit;
+  }
+  if(occupied && retaliate ){
+    score += hit + retaliation;
+  }
+  if(!occupied && !retaliate ){
+    score += miss;
+  }
+  if(!occupied && retaliate ){
+    score += miss + retaliation;
+  }
+  return score;
+}
