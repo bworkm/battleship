@@ -14,6 +14,11 @@ var grid = document.getElementById('clickable_Grid');
 var score = 100;
 var health = 100;
 var clickedGridPT = [];
+var userNameArr = [];
+var userScoreArr = [];
+var userName = localStorage.getItem('user_name');
+userNameArr.push(JSON.parse(userName));
+console.log(userNameArr);
 
 function Ship(name, size) {
   this.name = name;
@@ -180,17 +185,19 @@ function plotShips() {
 // }
 function checkGameStatus(){
   if (shipLocations.length === 0){
+    userScoreArr.push(score);
     setTimeout(function () {
-    alert('You WON!');
+      alert(userNameArr[0] + ' you WON!' + '\n' + 'Your score was: ' + userScoreArr[0]);
     },200);
     removeListener();
   }
 
   if (health === 0){
+    userScoreArr.push(score);
     var audio = new Audio('assets/gameover.mp3');
     audio.play();
     setTimeout(function () {
-    alert('You Lose!');
+      alert(userNameArr[0] + ' you lost!' + '\n' + 'Your score was: ' + userScoreArr[0]);
     },200);
     removeListener();
   }

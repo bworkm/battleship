@@ -24,7 +24,7 @@
     <fieldset>
 
         <label for="name"> USER NAME:</label>
-          <input type="text" name="name" value=><br><br>
+          <input id="userName" type="text" name="name" required><br><br>
         <lable for="difficulty">Difficulty:</lable>
   <ul id = "difficultylevels" >
         <li><input type="checkbox" name="easy difficulty" value="Easy"> Capt.</li>
@@ -34,7 +34,8 @@
     </fieldset>
 
 
-    <a href="game.html" ><input type="button" class="button" value="START" /></a>
+    <button type="submit" class="button">START</button>
+    <!-- <button type="submit" class="button"><a href="game.html" onclick="return false;">START</a></button> -->
   </form>
   </div>
 
