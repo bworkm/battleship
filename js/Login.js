@@ -6,6 +6,7 @@ var formData = document.getElementById('userinput');
 formData.addEventListener('submit', inputNewUserData);
 
 function inputNewUserData (event) {
+  var userName =
   event.preventDefault();}
 //******************************music loop*******************************
 var audio = document.getElementById("myMusic");

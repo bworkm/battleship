@@ -16,13 +16,21 @@ div {
   height: 50px;
   border: 1px dotted green;
 }
+.hit {
+  background-color: red;
+  background-image: radial-gradient(30px at 50% 50% , red 0%, rgba(255, 0, 0, 0) 0%, green 90%);
+}
+.miss {
+  background-color: blue;
+  background-image: radial-gradient(30px at 50% 50% , blue 0%, rgba(0, 0, 255, 0) 0%, lightblue 90%);
+}
 table {
   margin: 100px auto;
   background-color: white;
-  
+  box-shadow: inset 0 0 15px 5px lightblue;
 }
 td {
   width: 50px;
   height: 50px;
-  border: 1px dotted green;
+  border: 1px dotted black;
 }
