@@ -18,6 +18,8 @@ div {
 }
 table {
   margin: 100px auto;
+  background-color: white;
+  
 }
 td {
   width: 50px;
