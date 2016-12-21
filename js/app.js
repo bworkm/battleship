@@ -174,24 +174,32 @@ function plotShips() {
 // }
 function checkGameStatus(){
   if (shipLocations.length === 0){
+    setTimeout(function () {
     alert('You WON!');
+    },200);
+    removeEventListner();
   }
 
   if (health === 0){
     var audio = new Audio('assets/gameover.mp3');
     audio.play();
+    setTimeout(function () {
     alert('You Lose!');
+    },200);
+    removeEventListner();
   }
 }
-
 function toggleDisplayHitMiss(target) {
   console.log(target,'toggle display target');
   if (target.occupied === true) {
     document.getElementById(target.id).className = 'hit';
   }
   else document.getElementById(target.id).className = 'miss';
-
 }
+function removeEventListner(){
+  grid.removeEventListner('click',handleClick);
+}
+
 
 function handleClick() {
   console.log('You clicked ', event.target.id);
