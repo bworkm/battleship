@@ -3,11 +3,12 @@
 var shipLocations = [8,16, 24, 42,43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63];
 var allShips = [];
 var allPlots = [];
-var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H', 'I', 'J'];
+var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H'];
 var maxHeight = 8;
 var maxWidth = 8;
 var grid = document.getElementById('clickable_Grid');
 var score = 100;
+var health = 100;
 var clickedGridPT = [];
 
 function Ship(name, size) {
@@ -68,12 +69,15 @@ new Ship('USS Chika', 4);
 //   }
 // }
 
-// Randomize for X
-// function randomizeForX() {
-//   var xPos = (Math.floor(Math.random() * maxWidth));
-//   // console.log(xPosArr[xPos],'X value');
-//   return xPos;
-// }
+// Randomize Retaliation
+function randRetal() {
+  for (var i = 0; i < 4; i++) {
+    var retalPos = (Math.floor(Math.random() * allPlots.length));
+    console.log(retalPos);
+    allPlots[retalPos].retaliate = true;
+    console.log(allPlots[retalPos],'Retaliate!');
+  }
+}
 //
 // // Randomize for Y
 // function randomizeForY() {
@@ -164,6 +168,18 @@ function plotShips() {
 //   }
 //   return true;
 // }
+function checkGameStatus(){
+  if (shipLocations.length === 0){
+    alert('You WON!');
+  }
+
+  if (health === 0){
+    var audio = new Audio('assets/gameover.mp3');
+    audio.play();
+    alert('You Lose!');
+  }
+}
+
 function handleClick() {
   console.log('You clicked ', event.target.id);
   for( var plot in allPlots) {
@@ -179,6 +195,7 @@ function handleClick() {
       break;
     }
   }
+  checkGameStatus();
 }
 function isInArray (value, array){
   return array.indexOf(value) > -1;
@@ -187,6 +204,7 @@ function isInArray (value, array){
 createPlots();
 createClickableGrid(maxHeight, maxWidth);
 plotShips();
+randRetal();
 updatePlotDisplay();
 
 grid.addEventListener('click', handleClick);
@@ -202,15 +220,18 @@ function calcScore (occupied, retaliate) {
   }
   if(occupied && retaliate ){
     score += hit + retaliation;
+    health -= 25;
   }
   if(!occupied && !retaliate ){
     score += miss;
   }
   if(!occupied && retaliate ){
     score += miss + retaliation;
+    health -= 25;
   }
-  console.log(score);
-  return score;
+  console.log(score, 'current score');
+  console.log(health, 'current health');
+  // return score;
 }
 
 //**************************Hit or Miss*******************************
