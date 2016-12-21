@@ -1,6 +1,10 @@
 'use strict';
-// var shipLocations = ['B1', 'C1', 'D1','E2','E3','A4','B4','C4','D4'];
-var shipLocations = [8,16, 24, 42,43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63];
+var shipPosTemplates = [
+  [8, 16, 24, 42, 43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63],
+  [9, 17, 25, 30, 38, 46, 19, 22, 27, 35, 59, 60, 61, 62, 63]
+];
+// var shipPosTemplate2 = [9, 17, 25, 30, 38, 46, 19, 22, 27, 35, 59, 60, 61, 62, 63];
+var shipLocations = shipPosTemplates[0];
 var allShips = [];
 var allPlots = [];
 var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H'];
@@ -14,11 +18,9 @@ var clickedGridPT = [];
 function Ship(name, size) {
   this.name = name;
   this.size = size;
-  this.hitTally = 0;
-  this.sunk = false;
-  this.updateSunk = function() {
-
-  };
+  // this.hitTally = 0;  //Not used yet
+  // this.sunk = false;  //Not used yet
+  // this.updateSunk = function() {};  //Not used yet
   allShips.push(this);
 }
 
@@ -32,9 +34,10 @@ function Plot(x, y) {
   allPlots.push(this);
 }
 
-new Ship('USS Juan', 2);
+new Ship('USS Juan', 3);
 new Ship('USS Darcy', 3);
 new Ship('USS Chika', 4);
+new Ship('USS Brian', 5);
 //*********************************
 // Functions for Placing Ships
 
@@ -76,7 +79,7 @@ function randRetal() {
     var retalPos = (Math.floor(Math.random() * allPlots.length));
     console.log(retalPos);
     allPlots[retalPos].retaliate = true;
-    console.log(allPlots[retalPos],'Retaliate!');
+    // console.log(allPlots[retalPos],'Retaliate!');
   }
 }
 //
@@ -112,12 +115,14 @@ function randRetal() {
 // Check for nearby open spaces Y
 // seatsTaken() for updating occupied spots
 function createClickableGrid(rows, cols) {
-
+  var i = 0;
   for (var r = 0; r < rows; r++) {
     var tr = grid.appendChild(document.createElement('tr'));
     for (var c = 0; c < cols; c++){
       var cell = tr.appendChild(document.createElement('td'));
       cell.id = xPosArr[r] + c;
+      // cell.innerHTML = i;  // Used for easy id of the cell numbers
+      i++;
       // console.log(cell.id);
     }
   }
@@ -130,23 +135,20 @@ function createPlots() {
     }
   }
 }
-
+// updatePlotDisplay used for showing the ship positions for demo and development purposes only.
 function updatePlotDisplay() {
   var temp;
   for(var i in allPlots) {
     if (allPlots[i].occupied === true) {
       temp = allPlots[i].x;
       temp += allPlots[i].y;
-      // console.log(temp);
       var cellID = document.getElementById(temp);
-      // console.log(cellID);
       cellID.style.background = 'navy';
     }
   }
 }
 
 function plotShips() {
-
   // var startPoint;
   for (var ship in shipLocations) {
     // console.log(shipLocations[ship],'ship in shipLocations')
@@ -182,10 +184,22 @@ function checkGameStatus(){
   }
 }
 
+function toggleDisplayHitMiss(target) {
+  console.log(target,'toggle display target');
+  if (target.occupied === true) {
+    document.getElementById(target.id).className = 'hit';
+  }
+  else document.getElementById(target.id).className = 'miss';
+
+}
+
 function handleClick() {
   console.log('You clicked ', event.target.id);
   for( var plot in allPlots) {
     if ((allPlots[plot].id === event.target.id) && (clickedGridPT.indexOf(event.target.id) === -1 )) {
+      var target = allPlots[plot];
+      console.log(allPlots[plot],'handleclick allplots[plot]');
+      console.log(target),'handleclick target';
       calcScore(allPlots[plot].occupied, allPlots[plot].retaliate);
       clickedGridPT.push(event.target.id);
       console.log(plot,'array position');
@@ -196,11 +210,8 @@ function handleClick() {
       }
       break;
     }
-    else if ((allPlots[plot].x === xCoord) && (allPlots[plot].y === yCoord)) {
-      // startPoint = allPlots[plot].id;
-      // console.log(startPoint,'startPoint');
-    }
   }
+  toggleDisplayHitMiss(target);
   checkGameStatus();
 }
 function isInArray (value, array){
@@ -211,7 +222,7 @@ createPlots();
 createClickableGrid(maxHeight, maxWidth);
 plotShips();
 randRetal();
-updatePlotDisplay();
+// updatePlotDisplay();
 
 grid.addEventListener('click', handleClick);
 //*************************Scoring Structure**************************
