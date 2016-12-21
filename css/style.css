@@ -12,6 +12,10 @@ header {
   width: 100%;
   margin-bottom: 10px;
 }
+a, a:visited, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
 h1 {
   width: 515px;
   margin: 0 auto;
@@ -20,7 +24,11 @@ h1 {
   font: normal 119px/1 "VT323", Helvetica, sans-serif;
   text-shadow: 5px 5px 0 rgba(255,0,0,1) ;
 }
-h2 {
+h2, h3, h4 {
+  color: white;
+}
+h4 {
+  font-size: 40px;
 }
 div {
   margin: 0 auto;
@@ -48,7 +56,7 @@ table {
   box-shadow: inset 0 0 15px 5px lightblue;
 }
 td {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border: 1px dotted black;
 }

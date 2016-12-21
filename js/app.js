@@ -11,7 +11,10 @@ var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H'];
 var maxHeight = 8;
 var maxWidth = 8;
 var grid = document.getElementById('clickable_Grid');
+var elHealthBar = document.getElementById('health');
+var elScore = document.getElementById('score');
 var score = 100;
+elScore.textContent = score;
 var health = 100;
 var clickedGridPT = [];
 var userNameArr = [];
@@ -132,7 +135,7 @@ function createClickableGrid(rows, cols) {
     for (var c = 0; c < cols; c++){
       var cell = tr.appendChild(document.createElement('td'));
       cell.id = xPosArr[r] + c;
-      cell.innerHTML = i;  // Used for easy id of the cell numbers
+      // cell.innerHTML = i;  // Used for easy id of the cell numbers
       i++;
       // console.log(cell.id);
     }
@@ -204,38 +207,35 @@ function checkGameStatus(){
 }
 function toggleDisplayHitMiss(target) {
   console.log(target,'toggle display target');
-  if (!clickedGridPT.indexOf(event.target.id) === -1 ) {
-    if (target.occupied === true) {
-      document.getElementById(target.id).className = 'hit';
-    }
-    else document.getElementById(target.id).className = 'miss';
+  if (target.occupied === true) {
+    document.getElementById(target.id).className = 'hit';
   }
+  else document.getElementById(target.id).className = 'miss';
 }
 
 function removeListener(){
   grid.removeEventListener('click',handleClick);
 }
 
-
 function handleClick() {
   console.log('You clicked ', event.target.id);
   for( var plot in allPlots) {
     if ((allPlots[plot].id === event.target.id) && (clickedGridPT.indexOf(event.target.id) === -1 )) {
       var target = allPlots[plot];
-      console.log(allPlots[plot],'handleclick allplots[plot]');
-      console.log(target),'handleclick target';
+      // console.log(allPlots[plot],'handleclick allplots[plot]');
+      // console.log(target),'handleclick target';
       calcScore(allPlots[plot].occupied, allPlots[plot].retaliate);
+      toggleDisplayHitMiss(target);
       clickedGridPT.push(event.target.id);
-      console.log(plot,'array position');
+      // console.log(plot,'array position');
 
       if (isInArray(parseInt(plot), shipLocations)) {
-        console.log(shipLocations.indexOf(plot),'indexOf shipLocations');
+        // console.log(shipLocations.indexOf(plot),'indexOf shipLocations');
         shipLocations.splice(shipLocations.indexOf(parseInt(plot)), 1);
       }
       break;
     }
   }
-  toggleDisplayHitMiss(target);
   checkGameStatus();
 }
 function isInArray (value, array){
@@ -247,7 +247,6 @@ createClickableGrid(maxHeight, maxWidth);
 plotShips();
 randRetal();
 // updatePlotDisplay();
-
 grid.addEventListener('click', handleClick);
 //*************************Scoring Structure**************************
 
@@ -272,6 +271,8 @@ function calcScore (occupied, retaliate) {
   }
   console.log(score, 'current score');
   console.log(health, 'current health');
+  elHealthBar.value = health;
+  elScore.textContent = score;
   // return score;
 }
 
