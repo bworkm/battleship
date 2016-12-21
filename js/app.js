@@ -4,7 +4,7 @@ var shipPosTemplates = [
   [9, 17, 25, 30, 38, 46, 19, 22, 27, 35, 59, 60, 61, 62, 63]
 ];
 // var shipPosTemplate2 = [9, 17, 25, 30, 38, 46, 19, 22, 27, 35, 59, 60, 61, 62, 63];
-var shipLocations = shipPosTemplates[0];
+var shipLocations = shipPosTemplates[1];
 var allShips = [];
 var allPlots = [];
 var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H'];

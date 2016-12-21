@@ -18,10 +18,11 @@ div {
 }
 .hit {
   background-color: red;
+  background-image: radial-gradient(30px at 50% 50% , red 0%, rgba(255, 0, 0, 0) 0%, green 90%);
 }
 .miss {
   background-color: blue;
-  background-image: radial-gradient(ellipse 10px at 5px 50% , #FFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);
+  background-image: radial-gradient(30px at 50% 50% , blue 0%, rgba(0, 0, 255, 0) 0%, lightblue 90%);
 }
 table {
   margin: 100px auto;
