@@ -75,11 +75,17 @@ new Ship('USS Brian', 5);
 
 // Randomize Retaliation
 function randRetal() {
+  var retalPointsArr = [];
+
   for (var i = 0; i < 4; i++) {
     var retalPos = (Math.floor(Math.random() * allPlots.length));
+
+    while (retalPointsArr.indexOf(retalPos) >= 0) {
+      retalPos = (Math.floor(Math.random() * allPlots.length));
+    }
     console.log(retalPos);
+    retalPointsArr.push(retalPos);
     allPlots[retalPos].retaliate = true;
-    // console.log(allPlots[retalPos],'Retaliate!');
   }
 }
 //
@@ -121,7 +127,7 @@ function createClickableGrid(rows, cols) {
     for (var c = 0; c < cols; c++){
       var cell = tr.appendChild(document.createElement('td'));
       cell.id = xPosArr[r] + c;
-      // cell.innerHTML = i;  // Used for easy id of the cell numbers
+      cell.innerHTML = i;  // Used for easy id of the cell numbers
       i++;
       // console.log(cell.id);
     }
@@ -177,7 +183,7 @@ function checkGameStatus(){
     setTimeout(function () {
     alert('You WON!');
     },200);
-    removeEventListner();
+    removeListener();
   }
 
   if (health === 0){
@@ -186,18 +192,21 @@ function checkGameStatus(){
     setTimeout(function () {
     alert('You Lose!');
     },200);
-    removeEventListner();
+    removeListener();
   }
 }
 function toggleDisplayHitMiss(target) {
   console.log(target,'toggle display target');
-  if (target.occupied === true) {
-    document.getElementById(target.id).className = 'hit';
+  if (!clickedGridPT.indexOf(event.target.id) === -1 ) {
+    if (target.occupied === true) {
+      document.getElementById(target.id).className = 'hit';
+    }
+    else document.getElementById(target.id).className = 'miss';
   }
-  else document.getElementById(target.id).className = 'miss';
 }
-function removeEventListner(){
-  grid.removeEventListner('click',handleClick);
+
+function removeListener(){
+  grid.removeEventListener('click',handleClick);
 }
 
 
