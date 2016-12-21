@@ -1,8 +1,6 @@
 'use strict';
 // var shipLocations = ['B1', 'C1', 'D1','E2','E3','A4','B4','C4','D4'];
-var shipLocations = [
-  [8,16, 24, 42,43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63]
-];
+var shipLocations = [8,16, 24, 42,43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63];
 var allShips = [];
 var allPlots = [];
 var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H', 'I', 'J'];
@@ -144,9 +142,9 @@ function updatePlotDisplay() {
 
 function plotShips() {
   // var startPoint;
-  for (var ship in shipLocations[0]) {
+  for (var ship in shipLocations) {
     // console.log(shipLocations[ship],'ship in shipLocations')
-    allPlots[shipLocations[0][ship]].occupied = true;
+    allPlots[shipLocations[ship]].occupied = true;
   //   var xCoord = randomizeForX();
   //   var yCoord = randomizeForY();
   //   while (!validStartingPoint(xCoord, yCoord)) {
@@ -168,20 +166,19 @@ function plotShips() {
 // }
 function handleClick() {
   console.log('You clicked ', event.target.id);
-  for( var plot in allPlots){
-    if(allPlots[plot].id === event.target.id) {
-      if (clickedGridPT.indexOf(event.target.id) === -1 ) {
+  for( var plot in allPlots) {
+    if ((allPlots[plot].id === event.target.id) && (clickedGridPT.indexOf(event.target.id) === -1 )) {
       calcScore(allPlots[plot].occupied, allPlots[plot].retaliate);
       clickedGridPT.push(event.target.id);
-      console.log(shipLocations.indexOf(event.target.id));
-      if(isInArray(event.target.id, shipLocations)){
-        shipLocations.splice(shipLocations.indexOf(event.target.id), 1);
+      console.log(plot,'array position');
+
+      if (isInArray(parseInt(plot), shipLocations)) {
+        console.log(shipLocations.indexOf(plot),'indexOf shipLocations');
+        shipLocations.splice(shipLocations.indexOf(parseInt(plot)), 1);
       }
       break;
     }
-
   }
-
 }
 function isInArray (value, array){
   return array.indexOf(value) > -1;
