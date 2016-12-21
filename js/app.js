@@ -11,9 +11,17 @@ var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H'];
 var maxHeight = 8;
 var maxWidth = 8;
 var grid = document.getElementById('clickable_Grid');
+var elHealthBar = document.getElementById('health');
+var elScore = document.getElementById('score');
 var score = 100;
+elScore.textContent = score;
 var health = 100;
 var clickedGridPT = [];
+var userNameArr = [];
+var userScoreArr = [];
+var userName = localStorage.getItem('user_name');
+userNameArr.push(JSON.parse(userName));
+console.log(userNameArr);
 
 function Ship(name, size) {
   this.name = name;
@@ -75,11 +83,17 @@ new Ship('USS Brian', 5);
 
 // Randomize Retaliation
 function randRetal() {
+  var retalPointsArr = [];
+
   for (var i = 0; i < 4; i++) {
     var retalPos = (Math.floor(Math.random() * allPlots.length));
+
+    while (retalPointsArr.indexOf(retalPos) >= 0) {
+      retalPos = (Math.floor(Math.random() * allPlots.length));
+    }
     console.log(retalPos);
+    retalPointsArr.push(retalPos);
     allPlots[retalPos].retaliate = true;
-    // console.log(allPlots[retalPos],'Retaliate!');
   }
 }
 //
@@ -174,19 +188,21 @@ function plotShips() {
 // }
 function checkGameStatus(){
   if (shipLocations.length === 0){
+    userScoreArr.push(score);
     setTimeout(function () {
-    alert('You WON!');
+      alert(userNameArr[0] + ' you WON!' + '\n' + 'Your score was: ' + userScoreArr[0]);
     },200);
-    removeEventListner();
+    removeListener();
   }
 
   if (health === 0){
+    userScoreArr.push(score);
     var audio = new Audio('assets/gameover.mp3');
     audio.play();
     setTimeout(function () {
-    alert('You Lose!');
+      alert(userNameArr[0] + ' you lost!' + '\n' + 'Your score was: ' + userScoreArr[0]);
     },200);
-    removeEventListner();
+    removeListener();
   }
 }
 function toggleDisplayHitMiss(target) {
@@ -196,30 +212,30 @@ function toggleDisplayHitMiss(target) {
   }
   else document.getElementById(target.id).className = 'miss';
 }
-function removeEventListner(){
-  grid.removeEventListner('click',handleClick);
-}
 
+function removeListener(){
+  grid.removeEventListener('click',handleClick);
+}
 
 function handleClick() {
   console.log('You clicked ', event.target.id);
   for( var plot in allPlots) {
     if ((allPlots[plot].id === event.target.id) && (clickedGridPT.indexOf(event.target.id) === -1 )) {
       var target = allPlots[plot];
-      console.log(allPlots[plot],'handleclick allplots[plot]');
-      console.log(target),'handleclick target';
+      // console.log(allPlots[plot],'handleclick allplots[plot]');
+      // console.log(target),'handleclick target';
       calcScore(allPlots[plot].occupied, allPlots[plot].retaliate);
+      toggleDisplayHitMiss(target);
       clickedGridPT.push(event.target.id);
-      console.log(plot,'array position');
+      // console.log(plot,'array position');
 
       if (isInArray(parseInt(plot), shipLocations)) {
-        console.log(shipLocations.indexOf(plot),'indexOf shipLocations');
+        // console.log(shipLocations.indexOf(plot),'indexOf shipLocations');
         shipLocations.splice(shipLocations.indexOf(parseInt(plot)), 1);
       }
       break;
     }
   }
-  toggleDisplayHitMiss(target);
   checkGameStatus();
 }
 function isInArray (value, array){
@@ -231,7 +247,6 @@ createClickableGrid(maxHeight, maxWidth);
 plotShips();
 randRetal();
 // updatePlotDisplay();
-
 grid.addEventListener('click', handleClick);
 //*************************Scoring Structure**************************
 
@@ -256,6 +271,8 @@ function calcScore (occupied, retaliate) {
   }
   console.log(score, 'current score');
   console.log(health, 'current health');
+  elHealthBar.value = health;
+  elScore.textContent = score;
   // return score;
 }
 

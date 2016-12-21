@@ -4,14 +4,26 @@
     <meta charset="utf-8">
     <title>Battleship!</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/Login.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- <link async href="http://fonts.googleapis.com/css?family=VT323" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/> -->
+    <!-- <link rel="stylesheet" href="css/Login.css"> -->
   </head>
   <body>
-    <!-- <div class="tableWrap"> -->
-      <table id="clickable_Grid" background="assets/giphy_water2.gif">
-      </table>
-    <!-- </div> -->
+    <header>
+      <a href="index.html"><h1>BATTLESHIP!</h1></a>
+      <a href="about_us.html"><h2>About Us</h2></a>
+    </header>
+    <section>
+      <table id="clickable_Grid" background="assets/giphy_water2.gif"></table>
+    </section>
+    <aside>
+      <h3>Health</h3>
+      <progress id="health" value="100" max="100"></progress>
+      <h3>Score</h3>
+      <h4 id="score"></h4>
+      <button></button>
+    </aside>
     <script src="js/app.js"></script>
+    <!-- <script src="js/login.js"></script> -->
   </body>
 </html>

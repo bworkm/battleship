@@ -1,8 +1,34 @@
 body {
   width: 960px;
-  margin: 0 auto;
+  background-image: url("../assets/DestroyerDestroying.jpg");
+  background-repeat: no-repeat;
   background-color: lightblue;
+  background-attachment: fixed;
+  margin: 0 auto;
   border: 1px dashed red;
+}
+header {
+  /*height: 100px;*/
+  width: 100%;
+  margin-bottom: 10px;
+}
+a, a:visited, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+h1 {
+  width: 515px;
+  margin: 0 auto;
+  font-size: 72px;
+  /*color: red;*/
+  font: normal 119px/1 "VT323", Helvetica, sans-serif;
+  text-shadow: 5px 5px 0 rgba(255,0,0,1) ;
+}
+h2, h3, h4 {
+  color: white;
+}
+h4 {
+  font-size: 40px;
 }
 div {
   margin: 0 auto;
@@ -25,12 +51,12 @@ div {
   background-image: radial-gradient(30px at 50% 50% , blue 0%, rgba(0, 0, 255, 0) 0%, lightblue 90%);
 }
 table {
-  margin: 100px auto;
+  margin: 0px auto;
   background-color: white;
   box-shadow: inset 0 0 15px 5px lightblue;
 }
 td {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border: 1px dotted black;
 }
