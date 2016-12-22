@@ -187,20 +187,21 @@ function plotShips() {
 //   return true;
 // }
 function checkGameStatus(){
-  if (shipLocations.length === 0){
-    userScoreArr.push(score);
-    setTimeout(function () {
-      alert(userNameArr[0] + ' you WON!' + '\n' + 'Your score was: ' + userScoreArr[0]);
-    },200);
-    removeListener();
-  }
-
   if (health === 0){
     userScoreArr.push(score);
     var audio = new Audio('assets/gameover.mp3');
     audio.play();
     setTimeout(function () {
       alert(userNameArr[0] + ' you lost!' + '\n' + 'Your score was: ' + userScoreArr[0]);
+    },200);
+    removeListener();
+    return;
+  }
+
+  if (shipLocations.length === 0){
+    userScoreArr.push(score);
+    setTimeout(function () {
+      alert(userNameArr[0] + ' you WON!' + '\n' + 'Your score was: ' + userScoreArr[0]);
     },200);
     removeListener();
   }
