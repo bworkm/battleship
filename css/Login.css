@@ -18,6 +18,12 @@ h1{
   display: inline-block;
   margin: 0 auto;
 }
+
+a, a:visited, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .fa{
   position: relative;
   top: 50px;
