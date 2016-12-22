@@ -16,6 +16,7 @@ var elScore = document.getElementById('score');
 var score = 100;
 elScore.textContent = score;
 var health = 100;
+elHealthBar.textContent = health;
 var clickedGridPT = [];
 var userNameArr = [];
 var userScoreArr = [];
@@ -260,21 +261,14 @@ grid.addEventListener('click', handleClick);
 function calcScore (occupied, retaliate) {
   var hit = 50;
   var miss = -10;
-  var retaliation = -20;
+  var retaliation = -25;
 
-  if(occupied && !retaliate ){
+  if(occupied){
     score += hit;
-  }
-  if(occupied && retaliate ){
-    score += hit + retaliation;
-    health -= 25;
-  }
-  if(!occupied && !retaliate ){
-    score += miss;
-  }
-  if(!occupied && retaliate ){
-    score += miss + retaliation;
-    health -= 25;
+  } else { score += miss;}
+
+  if(retaliate){
+    health += retaliation;
   }
   console.log(score, 'current score');
   console.log(health, 'current health');

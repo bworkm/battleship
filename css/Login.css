@@ -19,6 +19,61 @@ h1{
   margin: 0 auto;
 }
 
+.spot {
+  width: 50px;
+  height: 50px;
+  border: 1px dotted green;
+}
+.hit {
+  background-color: red;
+  background-image: radial-gradient(30px at 50% 50% , red 0%, rgba(255, 0, 0, 0) 0%, green 90%);
+}
+.miss {
+  background-color: blue;
+  background-image: radial-gradient(30px at 50% 50% , blue 0%, rgba(0, 0, 255, 0) 0%, lightblue 90%);
+}
+aside {
+  font-size: 2em;
+  margin-top: 30px;
+  float: right;
+}
+
+#scoreheader{
+  margin-top: 15px;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 250px;
+  height: 20px;
+}
+progress[value]::-webkit-progress-value {
+  background-color: rgb(11, 168, 53);
+  /*border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
+}
+
+.health-10::-webkit-progress-value{
+  background-color: yellow;
+}
+
+.health-25 {
+  color: red;
+}
+
+table {
+  margin-top: 30px;
+  background-color: white;
+  box-shadow: inset 0 0 15px 5px lightblue;
+  float: left;
+}
+td {
+  width: 60px;
+  height: 60px;
+  border: 1px dotted black;
+}
+
 a, a:visited, a:hover {
   text-decoration: none;
   color: inherit;
@@ -38,6 +93,14 @@ a, a:visited, a:hover {
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 0px;
+  padding-bottom: 10px;
+  min-height: 697px;
+}
+
+.sectionwrapper {
+  width: 960px;
+  margin: 0 auto;
+  color: oldlace;
 }
 
 .main{
@@ -80,7 +143,7 @@ input{
   margin-top: 10px;
 }
 
-.button{
+.button {
   position: relative;
   top: 1.4em;
   left: 4em;
@@ -89,6 +152,32 @@ input{
   font: inherit;
   font-size: 1.5em;
   background-color: oldlace;
+}
+
+.reset {
+  margin-top: 60px;
+  padding: 0px;
+  width: 147px;
+  height: 35px;
+  font: inherit;
+  background-color: oldlace;
+}
+
+.about {
+  margin-bottom: 30px;
+  /*background-color: white;*/
+  /*opacity: .5;*/
+}
+.about > h3 {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+  width: 710px;
+  height: 180px;
+  display: inline-block;
+  font-size: 24px;
+  padding: 10px;
+}
+.floatR {
+  float: right;
 }
 
 footer{
