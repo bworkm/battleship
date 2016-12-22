@@ -16,6 +16,7 @@ var elScore = document.getElementById('score');
 var score = 100;
 elScore.textContent = score;
 var health = 100;
+elHealthBar.textContent = health;
 var clickedGridPT = [];
 var userNameArr = [];
 var userScoreArr = [];
@@ -187,14 +188,6 @@ function plotShips() {
 //   return true;
 // }
 function checkGameStatus(){
-  if (shipLocations.length === 0){
-    userScoreArr.push(score);
-    setTimeout(function () {
-      alert(userNameArr[0] + ' you WON!' + '\n' + 'Your score was: ' + userScoreArr[0]);
-    },200);
-    removeListener();
-  }
-
   if (health === 0){
     userScoreArr.push(score);
     var audio = new Audio('assets/gameover.mp3');
@@ -203,14 +196,29 @@ function checkGameStatus(){
       alert(userNameArr[0] + ' you lost!' + '\n' + 'Your score was: ' + userScoreArr[0]);
     },200);
     removeListener();
+    return;
+  }
+
+  if (shipLocations.length === 0){
+    userScoreArr.push(score);
+    setTimeout(function () {
+      alert(userNameArr[0] + ' you WON!' + '\n' + 'Your score was: ' + userScoreArr[0]);
+    },200);
+    removeListener();
   }
 }
 function toggleDisplayHitMiss(target) {
+  var audioBoom = new Audio('assets/boom.mp3');
+  var audioSplash = new Audio('assets/splash.mp3');
   console.log(target,'toggle display target');
   if (target.occupied === true) {
     document.getElementById(target.id).className = 'hit';
+    audioBoom.play();
   }
-  else document.getElementById(target.id).className = 'miss';
+  else {
+    document.getElementById(target.id).className = 'miss';
+    audioSplash.play();
+  }
 }
 
 function removeListener(){
@@ -253,21 +261,14 @@ grid.addEventListener('click', handleClick);
 function calcScore (occupied, retaliate) {
   var hit = 50;
   var miss = -10;
-  var retaliation = -20;
+  var retaliation = -25;
 
-  if(occupied && !retaliate ){
+  if(occupied){
     score += hit;
-  }
-  if(occupied && retaliate ){
-    score += hit + retaliation;
-    health -= 25;
-  }
-  if(!occupied && !retaliate ){
-    score += miss;
-  }
-  if(!occupied && retaliate ){
-    score += miss + retaliation;
-    health -= 25;
+  } else { score += miss;}
+
+  if(retaliate){
+    health += retaliation;
   }
   console.log(score, 'current score');
   console.log(health, 'current health');
