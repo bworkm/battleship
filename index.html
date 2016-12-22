@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
     <link rel="stylesheet" href="css/Login.css">
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
     <title>Login:Battle Ships!</title>
     <!-- <audio id="myMusic" >
     <source src="assets/anchors.mp3" type="audio/mpeg">
@@ -13,31 +14,31 @@
 </head>
 
 <header>
-  <h1>BATTLE SHIPS!</h1>
+  <h1>BATTLESHIPS!</h1>
   <i class="fa fa-info-circle fa-1x" aria-hidden="true"></i>
 </header>
 
 
 
 <body>
-  <div>
+  <div class ="mainwrapper">
 <div class= "main">
 
   <form id="userinput">
-      <label for="name">
-      <legend id= "legend"><h2>New Player</h2></legend>
 
 
     <fieldset>
 
         <label for="name"> USER NAME: </label>
           <input id="userName" type="text" name="name" required><br><br>
-        <label for="difficulty" id= "diffy">Difficulty:</label>
+        <label for="difficulty" id= "difficulty">Difficulty:</label>
   <!-- <ul id = "difficultylevels"> -->
   <p>
-        <input type="checkbox" name="easy difficulty" value="Easy"> Capt.</input>
-         <input type="checkbox" name="moderate difficulty" value="Moderate"> Commander</input>
-        <input type="checkbox" name="hard difficulty" value="Hard"> Admiral</input>
+    <label for ="difficulty" id="difficulty">
+        <input type="radio" name="difficulty" value="Easy">Capt.</input>
+         <input type="radio" name="difficulty" value="Moderate"> Commander</input>
+        <input type="radio" name="difficulty" value="Hard"> Admiral</input>
+      </label>
       </p>
       <button type="submit" class="button">START</button>
     </fieldset>
