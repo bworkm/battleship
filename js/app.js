@@ -207,11 +207,17 @@ function checkGameStatus(){
   }
 }
 function toggleDisplayHitMiss(target) {
+  var audioBoom = new Audio('assets/boom.mp3');
+  var audioSplash = new Audio('assets/splash.mp3');
   console.log(target,'toggle display target');
   if (target.occupied === true) {
     document.getElementById(target.id).className = 'hit';
+    audioBoom.play();
   }
-  else document.getElementById(target.id).className = 'miss';
+  else {
+    document.getElementById(target.id).className = 'miss';
+    audioSplash.play();
+  }
 }
 
 function removeListener(){
