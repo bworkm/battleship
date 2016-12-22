@@ -1,46 +1,125 @@
 
-*{
+body {
   font-family: 'VT323', monospace;
 }
 header{
   background-color: gray;
   height: 150px;
-  width: 1600px;
+  width: 100%;
   font-size: 50px;
-  margin-top: -60px;
+  margin: 0 auto;
 }
 
 h1{
   position: relative;
-  left: 450px;
-  top: 25px;
+  left: 750px;
   text-shadow: 5px 5px red;
+  font-size: 2.5em;
+  display: inline-block;
+  margin: 0 auto;
 }
+
+.spot {
+  width: 50px;
+  height: 50px;
+  border: 1px dotted green;
+}
+.hit {
+  background-color: red;
+  background-image: radial-gradient(30px at 50% 50% , red 0%, rgba(255, 0, 0, 0) 0%, green 90%);
+}
+.miss {
+  background-color: blue;
+  background-image: radial-gradient(30px at 50% 50% , blue 0%, rgba(0, 0, 255, 0) 0%, lightblue 90%);
+}
+aside {
+  font-size: 2em;
+  margin-top: 30px;
+  float: right;
+}
+
+#scoreheader{
+  margin-top: 15px;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 250px;
+  height: 20px;
+}
+progress[value]::-webkit-progress-value {
+  background-color: rgb(11, 168, 53);
+  /*border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
+}
+
+.health-10::-webkit-progress-value{
+  background-color: yellow;
+}
+
+.health-25 {
+  color: red;
+}
+
+table {
+  margin-top: 30px;
+  background-color: white;
+  box-shadow: inset 0 0 15px 5px lightblue;
+  float: left;
+}
+td {
+  width: 60px;
+  height: 60px;
+  border: 1px dotted black;
+}
+
+a, a:visited, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .fa{
   position: relative;
-  top: -90px;
-  left: 1200px;
+  top: 38px;
+  left: 1037px;
 }
 .fa:hover{
   color:white;
 }
-.main{
+
+.mainwrapper{
   background-image: url("../assets/DestroyerDestroying.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  min-height: 697px;
+}
+
+.sectionwrapper {
+  width: 960px;
+  margin: 0 auto;
+  color: oldlace;
+}
+
+.main{
   width: 1200px;
   height: 770px;
   position: relative;
   top: 5px;
   left: 75px;
   bottom: 65px;
+  margin: 0 auto;
 }
 
 fieldset{
   position: relative;
-  top: 330px;
-  left: 380px;
-  height: 280px;
-  width: 400px;
+  padding: 1.5em;
+  top: 159px;
+  left: 367px;
+  height: 200px;
+  width: 350px;
   background: linear-gradient(
       rgba(218, 224, 234, 0.45),
       rgba(218, 224, 234, 0.45)
@@ -49,20 +128,61 @@ fieldset{
 }
 
 label{
-  font-size: 26px;
-  line-height: 16px;
+  font-size: 1.5em;
+  line-height: 0.5em;
+  margin-top: 0px;
+}
+input{
+  font-size: 20px;
 }
 
-.button{
+#userName {
+  width: 187px;
+  line-height: 20px;
+  display: block;
+  margin-top: 10px;
+}
+
+.button {
   position: relative;
-  left: 80px;
-  width: 90px;
-  height: 30px;
+  top: 1.4em;
+  left: 4em;
+  width: 147px;
+  height: 32px;
+  font: inherit;
+  font-size: 1.5em;
+  background-color: oldlace;
+}
+
+.reset {
+  margin-top: 60px;
+  padding: 0px;
+  width: 147px;
+  height: 35px;
+  font: inherit;
+  background-color: oldlace;
+}
+
+.about {
+  margin-bottom: 30px;
+  /*background-color: white;*/
+  /*opacity: .5;*/
+}
+.about > h3 {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+  width: 710px;
+  height: 180px;
+  display: inline-block;
+  font-size: 24px;
+  padding: 10px;
+}
+.floatR {
+  float: right;
 }
 
 footer{
   background-color: grey;
   width: 100%;
   height: 130px;
-  margin-top: 40px;
+  margin-top: 0px;
 }

@@ -7,15 +7,7 @@ body {
   margin: 0 auto;
   /*border: 1px dashed red;*/
 }
-header {
-  /*height: 100px;*/
-  width: 100%;
-  margin-bottom: 10px;
-}
-a, a:visited, a:hover {
-  text-decoration: none;
-  color: inherit;
-}
+
 h1 {
   width: 515px;
   margin: 0 auto;
@@ -24,9 +16,7 @@ h1 {
   font: normal 119px/1 "VT323", Helvetica, sans-serif;
   text-shadow: 5px 5px 0 rgba(255,0,0,1) ;
 }
-h2, h3, h4 {
-  color: white;
-}
+
 h4 {
   font-size: 40px;
 }
@@ -36,43 +26,4 @@ div {
   height: 500px;
   border: 1px solid black;
   background-color: white;
-}
-.spot {
-  width: 50px;
-  height: 50px;
-  border: 1px dotted green;
-}
-.hit {
-  background-color: red;
-  background-image: radial-gradient(30px at 50% 50% , red 0%, rgba(255, 0, 0, 0) 0%, green 90%);
-}
-.miss {
-  background-color: blue;
-  background-image: radial-gradient(30px at 50% 50% , blue 0%, rgba(0, 0, 255, 0) 0%, lightblue 90%);
-}
-table {
-  margin: 0px auto;
-  background-color: white;
-  box-shadow: inset 0 0 15px 5px lightblue;
-}
-td {
-  width: 60px;
-  height: 60px;
-  border: 1px dotted black;
-}
-.about {
-  margin-bottom: 30px;
-  /*background-color: white;*/
-  /*opacity: .5;*/
-}
-.about > h3 {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
-  width: 710px;
-  height: 180px;
-  display: inline-block;
-  font-size: 24px;
-  padding: 10px;
-}
-.floatR {
-  float: right;
 }
