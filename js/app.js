@@ -1,10 +1,19 @@
 'use strict';
 var shipPosTemplates = [
-  [8, 16, 24, 42, 43, 44, 45, 19, 20, 21, 31, 39, 47, 55, 63],
-  [9, 17, 25, 30, 38, 46, 19, 22, 27, 35, 59, 60, 61, 62, 63]
+  [8, 16, 24,
+    42, 43, 44, 45,
+    19, 20, 21,
+    31, 39, 47, 55, 63],
+  [9, 17, 25,
+    19, 27, 35,
+    22, 30, 38, 46,
+    59, 60, 61, 62, 63],
+  [1, 2, 3, 4,
+    27, 28, 29,
+    48, 49, 50, 51,
+    14, 22, 30, 38, 46]
 ];
-// var shipPosTemplate2 = [9, 17, 25, 30, 38, 46, 19, 22, 27, 35, 59, 60, 61, 62, 63];
-var shipLocations = shipPosTemplates[1];
+var shipLocations;
 var allShips = [];
 var allPlots = [];
 var xPosArr = ['A', 'B', 'C', 'D' ,'E', 'F', 'G', 'H'];
@@ -27,9 +36,6 @@ console.log(userNameArr);
 function Ship(name, size) {
   this.name = name;
   this.size = size;
-  // this.hitTally = 0;  //Not used yet
-  // this.sunk = false;  //Not used yet
-  // this.updateSunk = function() {};  //Not used yet
   allShips.push(this);
 }
 
@@ -50,37 +56,9 @@ new Ship('USS Brian', 5);
 //*********************************
 // Functions for Placing Ships
 
-// function checkYDirection(startPoint, whichway) {
-//   // Start at origin and look either up or down based on 'direction' from randomDirection.
-//   // Check for as many positions as required by ship.size.
-//   var tempDirectionArr = [];
-//
-//   if (whichway === 'up') {
-//     // check the spaces above origin until necessity is met.
-//     // Stop if space is not available and go the opposite direction.
-//     // Keep track of already approved open positions.
-//     // Y + 1
-//
-//   }
-//   if (whichway === 'down') {
-//     // check the spaces below origin until necessity is met.
-//     // Stop if space is not available and go the opposite direction.
-//     // Y - 1
-//   }
-// }
-
-// function checkXDirection(startPoint, whichway) {
-//   if (whichway === 'left') {
-//     // check the spaces to the left of origin until necessity is met.
-//     // Stop if space is not available and go the opposite direction.
-//     // X - 1
-//   }
-//   if (whichway === 'right') {
-//     // check the spaces to the right of origin until necessity is met.
-//     // Stop if space is not available and go the opposite direction.
-//     // X + 1
-//   }
-// }
+function randShipPlacement() {
+  shipLocations = shipPosTemplates[(Math.floor(Math.random() * shipPosTemplates.length))];
+}
 
 // Randomize Retaliation
 function randRetal() {
@@ -97,38 +75,7 @@ function randRetal() {
     allPlots[retalPos].retaliate = true;
   }
 }
-//
-// // Randomize for Y
-// function randomizeForY() {
-//   var yPos = (Math.floor(Math.random() * maxHeight));
-//   // console.log(yPos,'Y value');
-//   return yPos;
-// }
 
-// Randomize for Direction (1 thru 4)
-// function randomDirection(startPoint) {
-//   var direction;
-//   var temp = (Math.floor(Math.random() * 4) + 1);  //Randomizes 1 thru 4
-//   if (temp === 1)
-//     direction = 'up';
-//   if (temp === 2)
-//     direction = 'left';
-//   if (temp === 3)
-//     direction = 'right';
-//   if (temp === 4)
-//     direction = 'down';
-//
-//   if (direction === 'up' | direction === 'down')
-//     checkYDirection(startPoint, direction);
-//
-//   if (direction === 'left' | direction === 'right')
-//     checkXDirection(startPoint, direction);
-//
-//   return direction;
-// }
-// Check for nearby open spaces X
-// Check for nearby open spaces Y
-// seatsTaken() for updating occupied spots
 function createClickableGrid(rows, cols) {
   var i = 0;
   for (var r = 0; r < rows; r++) {
@@ -138,7 +85,6 @@ function createClickableGrid(rows, cols) {
       cell.id = xPosArr[r] + c;
       // cell.innerHTML = i;  // Used for easy id of the cell numbers
       i++;
-      // console.log(cell.id);
     }
   }
 }
@@ -164,29 +110,11 @@ function updatePlotDisplay() {
 }
 
 function plotShips() {
-  // var startPoint;
   for (var ship in shipLocations) {
-    // console.log(shipLocations[ship],'ship in shipLocations')
     allPlots[shipLocations[ship]].occupied = true;
-  //   var xCoord = randomizeForX();
-  //   var yCoord = randomizeForY();
-  //   while (!validStartingPoint(xCoord, yCoord)) {
-  //     xCoord = randomizeForX();
-  //     yCoord = randomizeForY();
-  //   }
-  //   randomDirection(startPoint);
   }
 }
 
-// function validStartingPoint(xCoord, yCoord) {
-//   for (var plot in allPlots) {
-//     if ((allPlots[plot].x === xCoord) && (allPlots[plot].y === yCoord) && (allPlots[plot].occupied === true)) {
-//       startPoint = allPlots[plot].name;
-//       return false;
-//     }
-//   }
-//   return true;
-// }
 function checkGameStatus(){
   if (health === 0){
     userScoreArr.push(score);
@@ -230,15 +158,11 @@ function handleClick() {
   for( var plot in allPlots) {
     if ((allPlots[plot].id === event.target.id) && (clickedGridPT.indexOf(event.target.id) === -1 )) {
       var target = allPlots[plot];
-      // console.log(allPlots[plot],'handleclick allplots[plot]');
-      // console.log(target),'handleclick target';
       calcScore(allPlots[plot].occupied, allPlots[plot].retaliate);
       toggleDisplayHitMiss(target);
       clickedGridPT.push(event.target.id);
-      // console.log(plot,'array position');
 
       if (isInArray(parseInt(plot), shipLocations)) {
-        // console.log(shipLocations.indexOf(plot),'indexOf shipLocations');
         shipLocations.splice(shipLocations.indexOf(parseInt(plot)), 1);
       }
       break;
@@ -249,15 +173,7 @@ function handleClick() {
 function isInArray (value, array){
   return array.indexOf(value) > -1;
 }
-// function calls
-createPlots();
-createClickableGrid(maxHeight, maxWidth);
-plotShips();
-randRetal();
-// updatePlotDisplay();
-grid.addEventListener('click', handleClick);
 //*************************Scoring Structure**************************
-
 function calcScore (occupied, retaliate) {
   var hit = 50;
   var miss = -10;
@@ -274,7 +190,13 @@ function calcScore (occupied, retaliate) {
   console.log(health, 'current health');
   elHealthBar.value = health;
   elScore.textContent = score;
-  // return score;
 }
+// function calls
+createPlots();
+createClickableGrid(maxHeight, maxWidth);
+randShipPlacement();
+plotShips();
+randRetal();
+// updatePlotDisplay();
 
-//**************************Hit or Miss*******************************
+grid.addEventListener('click', handleClick);
