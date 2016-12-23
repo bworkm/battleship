@@ -1,60 +1,41 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/Login.css">
-    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
     <title>Login:BATTLESHIP!</title>
     <audio id="myMusic" >
-    <source src="assets/anchors.mp3" type="audio/mpeg">
+      <source src="assets/anchors.mp3" type="audio/mpeg">
     </audio>
 </head>
-
-<header>
-  <h1>BATTLESHIP!</h1>
-  <a href="about_us.html"><i class="fa fa-info-circle fa-1x" aria-hidden="true"></i></a>
-</header>
-
-
-
 <body>
+  <header>
+    <h1>BATTLESHIP!</h1>
+    <a href="about_us.html"><i class="fa fa-info-circle fa-1x" aria-hidden="true"></i></a>
+  </header>
   <div class ="mainwrapper">
-<div class= "main">
-
-  <form id="userinput">
-
-
-    <fieldset>
-
-        <label for="name"> USER NAME: </label>
+    <div class= "main">
+      <form id="userinput">
+        <fieldset>
+          <label for="name"> USER NAME: </label>
           <input id="userName" type="text" name="name" required><br><br>
-        <label for="difficulty" id= "difficulty">Difficulty:</label>
-  <!-- <ul id = "difficultylevels"> -->
-  <p>
-    <label for ="difficulty" id="difficulty">
-        <input type="radio" name="difficulty" value="Easy">Capt.</input>
-         <input type="radio" name="difficulty" value="Moderate"> Commander</input>
-        <input type="radio" name="difficulty" value="Hard"> Admiral</input>
-      </label>
-      </p>
-      <button type="submit" class="button">START</button>
-    </fieldset>
-
-    <!-- <button type="submit" class="button"><a href="game.html" onclick="return false;">START</a></button> -->
-  </form>
+          <label for="difficulty" id= "difficulty">Difficulty:</label>
+          <p>
+            <label for ="difficulty" id="difficulty">
+              <input type="radio" name="difficulty" value="Easy">Capt.</input>
+              <input type="radio" name="difficulty" value="Moderate"> Commander</input>
+              <input type="radio" name="difficulty" value="Hard"> Admiral</input>
+            </label>
+          </p>
+          <button type="submit" class="button">START</button>
+        </fieldset>
+      </form>
+    </div>
   </div>
-
-
-</div>
-
-    <script src="js/Login.js"></script>
-    <script src="https://use.fontawesome.com/4577a24050.js"></script>
-  </body>
-
-  <footer>
-  </footer>
-
+  <script src="js/Login.js"></script>
+  <script src="https://use.fontawesome.com/4577a24050.js"></script>
+  <footer></footer>
+</body>
 </html>
