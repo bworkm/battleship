@@ -12,11 +12,57 @@ header{
 
 h1{
   position: relative;
-  left: 750px;
+  left: 488px;
   text-shadow: 5px 5px red;
   font-size: 2.5em;
   display: inline-block;
   margin: 0 auto;
+  animation: highlight 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes highlight {
+   from {text-shadow: 5px 5px red; color: black;}
+   to {text-shadow: 5px 5px yellow; color: red;}
+}
+
+i.home:before {
+    content: "\f015";
+    font-family: FontAwesome;
+    font-size:60px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color:#000;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    padding-right: 0.5em;
+    position: relative;
+    top: 0.7em;
+    left: 9.5em;
+}
+
+i.home:hover:before {
+  color:#FFF;
+  border: 0 none;
+}
+
+i.info-circle:before {
+    content: "\f05a";
+    font-family: FontAwesome;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color:#000;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    position: relative;;
+    top: 0.7em;
+    left: 10em;
+}
+
+i.info-circle:hover:before {
+  color:#FFF;
+  border: 0 none;
 }
 
 .spot {
@@ -48,11 +94,20 @@ progress[value] {
   width: 250px;
   height: 20px;
 }
-progress[value]::-webkit-progress-value {
+.greenbar::-webkit-progress-value {
+  background-color: green;
+}
+.yellowbar::-webkit-progress-value {
+  background-color: yellow;
+}
+.redbar::-webkit-progress-value {
+  background-color: red;
+}
+/*progress[value]::-webkit-progress-value {
   background-color: rgb(11, 168, 53);
   /*border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
-}
+}*/
 
 .health-10::-webkit-progress-value{
   background-color: yellow;
@@ -175,6 +230,34 @@ input{
   display: inline-block;
   font-size: 24px;
   padding: 10px;
+}
+.about > img {
+  height: 200px;
+  width: 200px;
+}
+#brian {
+  background: url('../assets/Brian64.jpg')
+}
+#brian:hover {
+  background: url('../assets/Brian200.jpg');
+}
+#chika {
+  background: url('../assets/Chika64.jpg')
+}
+#chika:hover {
+  background: url('../assets/Chika200.jpg');
+}
+#darcy {
+  background: url('../assets/Darcy64.jpg')
+}
+#darcy:hover {
+  background: url('../assets/Darcy200.jpg');
+}
+#juan {
+  background: url('../assets/Juan64.jpg')
+}
+#juan:hover {
+  background: url('../assets/Juan200.jpg');
 }
 .floatR {
   float: right;
