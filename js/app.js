@@ -173,11 +173,18 @@ function handleClick() {
 function isInArray (value, array){
   return array.indexOf(value) > -1;
 }
+function updateHealthBar() {
+  if (health < 100 && health > 25)
+    elHealthBar.className = 'yellowbar';
+  if (health <= 25)
+    elHealthBar.className = 'redbar';
+}
 //*************************Scoring Structure**************************
 function calcScore (occupied, retaliate) {
   var hit = 50;
   var miss = -10;
   var retaliation = -25;
+  var audioRetaliate = new Audio('assets/pew_pew.mp3');
 
   if(occupied){
     score += hit;
@@ -185,9 +192,11 @@ function calcScore (occupied, retaliate) {
 
   if(retaliate){
     health += retaliation;
+    audioRetaliate.play();
   }
   console.log(score, 'current score');
   console.log(health, 'current health');
+  updateHealthBar();
   elHealthBar.value = health;
   elScore.textContent = score;
 }
