@@ -176,6 +176,34 @@ input{
   font-size: 24px;
   padding: 10px;
 }
+.about > img {
+  height: 200px;
+  width: 200px;
+}
+#brian {
+  background: url('https://placehold.it/200x200')
+}
+#brian:hover {
+  background: url('../assets/');
+}
+#chika {
+  background: url('https://placehold.it/200x200')
+}
+#chika:hover {
+  background: url('../assets/');
+}
+#darcy {
+  background: url('https://placehold.it/200x200')
+}
+#darcy:hover {
+  background: url('../assets/');
+}
+#juan {
+  background: url('https://placehold.it/200x200')
+}
+#juan:hover {
+  background: url('../assets/');
+}
 .floatR {
   float: right;
 }
