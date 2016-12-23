@@ -94,11 +94,20 @@ progress[value] {
   width: 250px;
   height: 20px;
 }
-progress[value]::-webkit-progress-value {
+.greenbar::-webkit-progress-value {
+  background-color: green;
+}
+.yellowbar::-webkit-progress-value {
+  background-color: yellow;
+}
+.redbar::-webkit-progress-value {
+  background-color: red;
+}
+/*progress[value]::-webkit-progress-value {
   background-color: rgb(11, 168, 53);
   /*border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
-}
+}*/
 
 .health-10::-webkit-progress-value{
   background-color: yellow;
