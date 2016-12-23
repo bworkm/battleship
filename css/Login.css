@@ -12,11 +12,57 @@ header{
 
 h1{
   position: relative;
-  left: 750px;
+  left: 488px;
   text-shadow: 5px 5px red;
   font-size: 2.5em;
   display: inline-block;
   margin: 0 auto;
+  animation: highlight 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes highlight {
+   from {text-shadow: 5px 5px red; color: black;}
+   to {text-shadow: 5px 5px yellow; color: red;}
+}
+
+i.home:before {
+    content: "\f015";
+    font-family: FontAwesome;
+    font-size:60px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color:#000;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    padding-right: 0.5em;
+    position: relative;
+    top: 0.7em;
+    left: 9.5em;
+}
+
+i.home:hover:before {
+  color:#FFF;
+  border: 0 none;
+}
+
+i.info-circle:before {
+    content: "\f05a";
+    font-family: FontAwesome;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color:#000;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    position: relative;;
+    top: 0.7em;
+    left: 10em;
+}
+
+i.info-circle:hover:before {
+  color:#FFF;
+  border: 0 none;
 }
 
 .spot {
@@ -181,28 +227,28 @@ input{
   width: 200px;
 }
 #brian {
-  background: url('https://placehold.it/200x200')
+  background: url('../assets/Brian64.jpg')
 }
 #brian:hover {
-  background: url('../assets/');
+  background: url('../assets/Brian200.jpg');
 }
 #chika {
-  background: url('https://placehold.it/200x200')
+  background: url('../assets/Chika64.jpg')
 }
 #chika:hover {
-  background: url('../assets/');
+  background: url('../assets/Chika200.jpg');
 }
 #darcy {
-  background: url('https://placehold.it/200x200')
+  background: url('../assets/Darcy64.jpg')
 }
 #darcy:hover {
-  background: url('../assets/');
+  background: url('../assets/Darcy200.jpg');
 }
 #juan {
-  background: url('https://placehold.it/200x200')
+  background: url('../assets/Juan64.jpg')
 }
 #juan:hover {
-  background: url('../assets/');
+  background: url('../assets/Juan200.jpg');
 }
 .floatR {
   float: right;
